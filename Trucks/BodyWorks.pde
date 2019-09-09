@@ -43,10 +43,7 @@ class BodyWorks{
       tBody = new Body(((w/4)*3),h,clr,x,y);
       tHead = new Body(w/4,h/2,clr,x+((w/4)*3),y+h/2);
     }
-    
-    
-    
-    
+        
     
     tWindows = new Window[noWin];
     
@@ -65,25 +62,5 @@ class BodyWorks{
       tWindows[i].drraw();
   }
   
-  
-  public void moveX(){
-    
-    tBody.moveX(v);
-    tHead.moveY(v);
-    
-    for(int i=0; i<noWin; i++){
-      tWindows[i].moveX(v);
-    }
-  }
-  
-  
-  public void moveY(){
-    tBody.moveX(v);
-    tHead.moveY(v);
-    
-    for(int i=0; i<noWin; i++){
-      tWindows[i].moveY(v);
-    }
-  }
 
 }

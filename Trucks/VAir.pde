@@ -6,6 +6,7 @@ class VAir extends BodyWorks{
   protected int vh = 2;
   protected float v;
   protected color clr;
+  protected int or;
   
   
   VAir(int x, int y, int w, int h, color clr, float v,int noWin) { 
@@ -28,13 +29,29 @@ class VAir extends BodyWorks{
    
  }
   
-  public void moveX(){
-    bodyWorks.moveX();
-    tWing.moveX(v);
-  }
-  
-  public void moveY(){
-    bodyWorks.moveY();
-    tWing.moveY(v);
+   public void move(int or){
+    if(or == 1){//right
+      if(v<0)
+         v = -v;
+      tWing.moveX(v);
+    }
+    if(or == 2){//arriba
+      if(v>0)
+         v = -v;
+
+      tWing.moveY(v);
+    }
+    if(or == 3){//izquierda
+      if(v>0)
+         v = -v;
+
+      tWing.moveX(v);
+    }
+    if(or == 4){//abajo
+      if(v<0)
+         v = -v;
+
+      tWing.moveY(v);
+    }
   }
 }

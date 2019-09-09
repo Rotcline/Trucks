@@ -1,4 +1,4 @@
-/*class VGround extends BodyWorks{
+class VGround extends BodyWorks{
   
   protected BodyWorks bodyWorks;
   protected Wheel lWheel;
@@ -9,17 +9,18 @@
   protected color clr;
   
   
-  VGround(int x, int y, int w, int h, color clr, float v,int noWin) { 
-    super(x,y,w,h,clr,v,noWin,2);
+  VGround(int x, int y, int w, int h, color clr, float v,int noWin,int vh) { 
+    super(x,y,w,h,clr,v,noWin,vh);
     this.x = x;
     this.y = y;
     this.h = h;
     this.w = w;
     this.v = v;
+    this.vh = vh;
     this.noWin = noWin;
     
-    rWheel= new Wheel(w/3,clr,x+w/3,y+h/2);
-    lWheel= new Wheel(w/3,clr,x+w/3,y+h/2);
+    rWheel= new Wheel(w/4+x, y+h, w/10, w/8, 255, 0);
+    lWheel= new Wheel(x+(w/4)*3, y+h, w/10, w/8, 255, 0);
     bodyWorks= new BodyWorks(x,y,w,h, clr, v,noWin,vh);
     
   }
@@ -29,17 +30,54 @@
    lWheel.drraw();
    rWheel.drraw();
    
- }
-  
-  public void moveX(){
-    bodyWorks.moveX();
-    lWheel.moveX(v);
-    rWheel.moveX(v);
+ }  
+ public void move(int or){
+    if(or == 1){//right
+      if(v<0)
+         v = -v;
+
+      tBody.moveX(v);
+      tHead.moveX(v);
+      lWheel.moveX(v);
+      rWheel.moveX(v);
+      for(int i=0; i<noWin; i++){
+        tWindows[i].moveX(v);
+    }
+    }
+    if(or == 2){//arriba
+      if(v>0)
+         v = -v;
+
+      tBody.moveY(v);
+      tHead.moveY(v);
+      lWheel.moveY(v);
+      rWheel.moveY(v);
+      for(int i=0; i<noWin; i++){
+        tWindows[i].moveY(v);
+    }
+    }
+    if(or == 3){//izquierda
+      if(v>0)
+         v = -v;
+      tBody.moveX(v);
+      tHead.moveX(v);
+      lWheel.moveX(v);
+      rWheel.moveX(v);
+      for(int i=0; i<noWin; i++){
+        tWindows[i].moveX(v);
+    }
+    if(or == 4){//abajo
+      if(v<0)
+         v = -v;
+      tBody.moveY(v);
+      tHead.moveY(v);
+      lWheel.moveY(v);
+      rWheel.moveY(v);
+      for(int i=0; i<noWin; i++){
+        tWindows[i].moveY(v);
+      }
+    }
   }
-  
-  public void moveY(){
-    bodyWorks.moveY();
-    lWheel.moveY(v);
-    rWheel.moveY(v);
-  }
-}*/
+}
+
+}
